@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Estrada para os Céus — A taberna mais lendária de todos os reinos. Comida, bebida, abrigo e histórias para aventureiros." />
+  <title>Estrada para os Céus — Taberna & Hospedagem</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Favicons & theme color -->
+  <meta name="theme-color" content="#0e0a06" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       TORCHES (decorative)
+  ══════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════ -->
+  <nav id="navbar" role="navigation" aria-label="Navegação principal">
+
+    <ul class="nav-links">
+      <li><a href="#hero">Início</a></li>
+      <li><a href="#cardapio">Cardápio</a></li>
+      <li><a href="#hospedagem">Hospedagem</a></li>
+      <li><a href="#donos">Os Donos</a></li>
+    </ul>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile overlay nav -->
+  <div class="nav-mobile-overlay" id="navMobileOverlay" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+    <a href="#hero">Início</a>
+    <a href="#cardapio">Cardápio</a>
+    <a href="#hospedagem">Hospedagem</a>
+    <a href="#donos">Os Donos</a>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section id="hero" aria-label="Apresentação da taberna">
+    <div class="hero-bg-art" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">Uma taberna lendária nos confins do mundo</p>
+
+      <a href="index.html" class="hero-title-link" aria-label="Voltar ao topo da página">
+        <h1 class="hero-title">Estrada<br>para os Céus</h1>
+      </a>
+      <span class="hero-subtitle-line">Taberna &amp; Pousada</span>
+
+      <div class="hero-divider" aria-hidden="true">
+        <div class="hero-divider-line"></div>
+        <span class="hero-divider-icon">✦</span>
+        <div class="hero-divider-line"></div>
+      </div>
+
+      <p class="hero-lore">
+        Alguns dizem que a Estrada para os Céus fica no caminho do céu.<br>
+        Outros juram que é o desvio.
+      </p>
+
+      <a href="#cardapio" class="hero-cta" role="button">
+        <span>⚔</span>
+        <span>Explorar a Taberna</span>
+      </a>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>Rolar</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       CARDÁPIO
+  ══════════════════════════════════════ -->
+  <section id="cardapio" aria-label="Cardápio da taberna">
+    <div class="container">
+
+      <h2 class="section-title reveal">O Cardápio</h2>
+      <div class="section-ornament reveal reveal-delay-1" aria-hidden="true">
+        <div class="ornament-diamond"></div>
+      </div>
+
+      <p class="menu-intro reveal reveal-delay-2">
+        Preparado com os ingredientes mais raros dos quatro reinos — e alguns que é melhor não perguntar a origem.
+      </p>
+
+      <div class="menu-wrapper reveal reveal-delay-3">
+        <div class="menu-grid">
+
+          <!-- Comidas -->
+          <div class="menu-category">
+            <h3 class="menu-category-title">
+              <span class="cat-icon">🍖</span> Refeições
+            </h3>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Ensopado do Viajante
+                <small>Carne de javali, raízes de montanha e ervas do pântano</small>
+              </div>
+              <span class="item-price">4 ◈ Prata</span>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Assado da Casa <span class="item-badge badge-special">Especial</span>
+                <small>Receita secreta de Tripa de Boi, servido às sextas</small>
+              </div>
+              <span class="item-price">8 ◈ Prata</span>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Sopa de Osso do Dragão
+                <small>Nome apenas — mas quem prova nunca mais esquece</small>
+              </div>
+              <span class="item-price">3 ◈ Prata</span>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Pão de Centeio com Mel de Fada <span class="item-badge badge-new">Novo</span>
+                <small>Assado no forno de pedra da taverna</small>
+              </div>
+              <span class="item-price">1 ◈ Prata</span>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Torta do Pântano
+                <small>Carne de coelho selvagem em massa crocante</small>
+              </div>
+              <span class="item-price">5 ◈ Prata</span>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Filé de Enguia das Cavernas
+                <small>Levemente defumado, acompanha purê de nabos</small>
+              </div>
+              <span class="item-price">6 ◈ Prata</span>
+            </div>
+          </div>
+
+          <!-- Bebidas -->
+          <div class="menu-category">
+            <h3 class="menu-category-title">
+              <span class="cat-icon">🍺</span> Bebidas
+            </h3>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Cerveja Escura da Taverna
+                <small>Produção própria, encorpada e amarga — como todo herói</small>
+              </div>
+              <span class="item-price">2 ◈ Prata</span>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Hidromel dos Anões <span class="item-badge badge-special">Especial</span>
+                <small>Importado das forjas — dizem que aquece a alma</small>
+              </div>
+              <span class="item-price">4 ◈ Prata</span>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Vinho do Vale Sombrio
+                <small>Colheita antiga, cor de sangue, sabor de memórias</small>
+              </div>
+              <span class="item-price">5 ◈ Prata</span>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Chá das Bruxas
+                <small>Ervas medicinais. Cura ressacas e maldições leves</small>
+              </div>
+              <span class="item-price">1 ◈ Prata</span>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Poção de Coragem <span class="item-badge badge-new">Novo</span>
+                <small>Não é magia. É aguardente pura. Resultado similar.</small>
+              </div>
+              <span class="item-price">3 ◈ Prata</span>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Água do Rio Claro
+                <small>Realmente é apenas água. Não espere milagres.</small>
+              </div>
+              <span class="item-price">5 ◈ Cobre</span>
+            </div>
+          </div>
+
+          <!-- Sobremesas -->
+          <div class="menu-category">
+            <h3 class="menu-category-title">
+              <span class="cat-icon">🍯</span> Sobremesas
+            </h3>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Pudim de Trevos Élfico
+                <small>Delicado, adocicado, levemente encantado</small>
+              </div>
+              <span class="item-price">3 ◈ Prata</span>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Torta de Amoras Negras
+                <small>Das amoras que crescem apenas à meia-noite</small>
+              </div>
+              <span class="item-price">2 ◈ Prata</span>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Biscoito Rúnico <span class="item-badge badge-special">Especial</span>
+                <small>Cada um tem uma inscrição diferente. Ninguém sabe o que significam.</small>
+              </div>
+              <span class="item-price">1 ◈ Prata</span>
+            </div>
+          </div>
+
+          <!-- Petiscos -->
+          <div class="menu-category">
+            <h3 class="menu-category-title">
+              <span class="cat-icon">🧀</span> Petiscos & Extras
+            </h3>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Queijo da Cabana do Norte
+                <small>Curado por 3 invernos, servido com mel</small>
+              </div>
+              <span class="item-price">2 ◈ Prata</span>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Cogumelos da Floresta Proibida
+                <small>Sim, são seguros. Provavelmente.</small>
+              </div>
+              <span class="item-price">2 ◈ Prata</span>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-name">
+                Ração de Viagem
+                <small>Pão seco, carne salgada e uma oração. Para a estrada.</small>
+              </div>
+              <span class="item-price">3 ◈ Prata</span>
+            </div>
+          </div>
+
+        </div><!-- /menu-grid -->
+      </div><!-- /menu-wrapper -->
+
+    </div><!-- /container -->
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       A TABERNA
+  ══════════════════════════════════════ -->
+  <section id="taberna" aria-label="Sobre a taberna">
+    <div class="container">
+
+      <h2 class="section-title reveal">A Taberna</h2>
+      <div class="section-ornament reveal reveal-delay-1" aria-hidden="true">
+        <div class="ornament-diamond"></div>
+      </div>
+
+      <div class="taberna-layout reveal reveal-delay-2">
+
+        <div class="taberna-img-wrap">
+          <img src="img/taverna.jpg" alt="O salão da Taberna Estrada para os Céus — balcão circular elevado com barris suspensos, vigas grossas e iluminação de velas" loading="lazy" />
+          <div class="taberna-img-overlay" aria-hidden="true"></div>
+        </div>
+
+        <div class="taberna-desc">
+
+          <details class="taverna-accordion" open>
+            <summary class="taverna-accordion-head">
+              <span class="accordion-icon" aria-hidden="true">🕯</span>
+              Salão
+            </summary>
+            <div class="taverna-accordion-body">
+              <p>O salão é amplo, de pé-direito alto, sustentado por vigas grossas e antigas. No centro, o elemento mais marcante: um balcão circular elevado, sustentado por pilastras robustas. Presos a elas, barris suspensos por correntes grossas vertem líquidos densos e escuros por torneiras de metal gasto.</p>
+              <p class="taverna-label">Aqui não se bebe qualquer coisa:</p>
+              <ul class="taverna-list">
+                <li>Cerveja de cevada escura com bagas de sabugueiro — amarga, quase medicinal</li>
+                <li>Hidromel espesso com tomilho e açafrão — doce no início, pesado no fim</li>
+                <li>Destilado de centeio com arruda — seco, cortante, deixa a boca dormente</li>
+              </ul>
+              <p>O ar é carregado: gordura quente, pão rústico, couro úmido, ervas queimadas. As mesas são troncos maciços e os bancos rangem sob qualquer peso. A iluminação vem de velas e candelabros baixos — a luz nunca é suficiente, e as sombras sempre parecem maiores do que deveriam.</p>
+            </div>
+          </details>
+
+          <details class="taverna-accordion">
+            <summary class="taverna-accordion-head">
+              <span class="accordion-icon" aria-hidden="true">⚔</span>
+              Escadarias &amp; Andar Superior
+            </summary>
+            <div class="taverna-accordion-body">
+              <p>Duas escadarias se erguem em lados opostos, simétricas, curvando-se até o andar superior como se abraçassem o salão. Os degraus são gastos no centro — muitos pés, muitas eras. No alto, uma galeria contorna todo o salão. As balaustradas são entalhadas com padrões estranhos, quase geométricos demais para serem apenas decoração. À distância, parecem se mover com a luz.</p>
+            </div>
+          </details>
+
+          <details class="taverna-accordion">
+            <summary class="taverna-accordion-head">
+              <span class="accordion-icon" aria-hidden="true">🛏</span>
+              Quartos
+            </summary>
+            <div class="taverna-accordion-body">
+              <p>A taverna não separa hóspedes por raça, mas por quanto estão dispostos a pagar.</p>
+              <p class="taverna-label">Albergue Comum <em>(8 a 12 pessoas)</em></p>
+              <ul class="taverna-list">
+                <li>Espaço coletivo, camas simples de madeira e palha</li>
+                <li>Cobertores ásperos com cheiro de fumaça e suor antigo</li>
+                <li>Barulho constante — roncos, murmúrios, asas roçando madeira</li>
+                <li>Segurança implícita, não garantida. É onde ficam os que não querem ser notados.</li>
+              </ul>
+              <p class="taverna-label">Quartos Intermediários <em>(6 a 8 pessoas)</em></p>
+              <ul class="taverna-list">
+                <li>Quartos individuais ou duplos com camas mais firmes</li>
+                <li>Pequenos baús com fechaduras antigas</li>
+                <li>Velas aromatizadas com lavanda e sálvia</li>
+                <li>Silêncio relativo. Privacidade suficiente.</li>
+              </ul>
+              <p class="taverna-label">Quartos Nobres <em>(2 a 4 pessoas)</em></p>
+              <ul class="taverna-list">
+                <li>Nas extremidades da galeria superior</li>
+                <li>Camas largas com peles curtidas e lençóis de linho pesado</li>
+                <li>Banheiras de cobre com água aquecida por mecanismos ocultos</li>
+                <li>Incensos raros: mirra, olíbano e folhas de louro</li>
+                <li>As portas são mais espessas. E algumas… não deixam o som sair.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="taverna-accordion">
+            <summary class="taverna-accordion-head">
+              <span class="accordion-icon" aria-hidden="true">🍷</span>
+              Adega
+            </summary>
+            <div class="taverna-accordion-body">
+              <p>Lá embaixo, o teto é baixo e arqueado, sustentado por pedra antiga. Fileiras de tonéis ocupam o espaço em ordem quase ritual. Entre os tonéis maiores, repousam ânforas enterradas parcialmente no chão de terra batida. Algumas vedadas com cera escura, outras apenas cobertas com pano grosso. O líquido dentro delas não é servido a qualquer um.</p>
+            </div>
+          </details>
+
+          <details class="taverna-accordion">
+            <summary class="taverna-accordion-head">
+              <span class="accordion-icon" aria-hidden="true">🔥</span>
+              Açougue
+            </summary>
+            <div class="taverna-accordion-body">
+              <p>Nos fundos da taverna, além do corredor que se afasta do salão, uma porta pesada conduz ao açougue. O calor ali é diferente — não acolhe, não envolve. Ele gruda. Ganchos de ferro descem do teto em fileiras, sustentando carcaças inteiras ou cortes grandes. Cordas grossas, lâminas largas, serras de dentes irregulares — tudo tem uso, nada é decorativo. Há sempre calor vindo de uma fornalha baixa, usada para selar, queimar ou limpar. A fumaça sobe pesada, grudando nas paredes.</p>
+            </div>
+          </details>
+
+        </div><!-- /taberna-desc -->
+      </div><!-- /taberna-layout -->
+    </div><!-- /container -->
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       HOSPEDAGEM
+  ══════════════════════════════════════ -->
+  <section id="hospedagem" aria-label="Opções de hospedagem">
+    <div class="container">
+
+      <h2 class="section-title reveal">Hospedagem</h2>
+      <div class="section-ornament reveal reveal-delay-1" aria-hidden="true">
+        <div class="ornament-diamond"></div>
+      </div>
+
+      <div class="lodge-grid">
+
+        <!-- Estábulo -->
+        <div class="lodge-card reveal reveal-delay-1">
+          <p class="lodge-tier">Econômico</p>
+          <h3 class="lodge-name">O Estábulo</h3>
+          <span class="lodge-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M8 34V21C8 13 12.5 7 20 7C27.5 7 32 13 32 21V34H28V21C28 15 25 11 20 11C15 11 12 15 12 21V34Z" fill="currentColor"/>
+              <rect x="7" y="33" width="8" height="4" rx="1.5" fill="currentColor"/>
+              <rect x="25" y="33" width="8" height="4" rx="1.5" fill="currentColor"/>
+            </svg>
+          </span>
+          <div class="lodge-price">
+            <span class="price-amount">2</span>
+            <span class="price-currency">Peças de Prata</span>
+          </div>
+          <span class="price-period">por noite</span>
+          <ul class="lodge-features">
+            <li>Palha razoavelmente limpa</li>
+            <li>Sem barulho (a menos que o cavalo ronque)</li>
+            <li>Vaga ao lado dos animais</li>
+            <li>Desjejum não incluso</li>
+          </ul>
+        </div>
+
+        <!-- Quarto Comum -->
+        <div class="lodge-card featured reveal reveal-delay-2">
+          <p class="lodge-tier">★ Mais Escolhido</p>
+          <h3 class="lodge-name">Quarto Comum</h3>
+          <span class="lodge-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="4" y="10" width="32" height="9" rx="2" fill="currentColor"/>
+              <rect x="4" y="22" width="32" height="9" rx="2" fill="currentColor"/>
+              <rect x="4" y="9" width="3" height="24" rx="1" fill="currentColor" opacity="0.5"/>
+              <rect x="33" y="9" width="3" height="24" rx="1" fill="currentColor" opacity="0.5"/>
+            </svg>
+          </span>
+          <div class="lodge-price">
+            <span class="price-amount">5</span>
+            <span class="price-currency">Peças de Prata</span>
+          </div>
+          <span class="price-period">por noite / por catre</span>
+          <ul class="lodge-features">
+            <li>Catre de madeira com cobertor</li>
+            <li>Compartilhado com até 5 aventureiros</li>
+            <li>Chave do armário inclusa</li>
+            <li>Café da manhã simples incluso</li>
+            <li>Banho no balde: 1 prata extra</li>
+          </ul>
+        </div>
+
+        <!-- Quarto Privativo -->
+        <div class="lodge-card reveal reveal-delay-3">
+          <p class="lodge-tier">Conforto</p>
+          <h3 class="lodge-name">Quarto Privativo</h3>
+          <span class="lodge-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="14" cy="17" r="9" stroke="currentColor" stroke-width="3" fill="none"/>
+              <circle cx="14" cy="17" r="4" fill="currentColor"/>
+              <rect x="21" y="15.5" width="15" height="3" rx="1" fill="currentColor"/>
+              <rect x="31" y="18.5" width="3" height="5" rx="1" fill="currentColor"/>
+              <rect x="26" y="18.5" width="3" height="4" rx="1" fill="currentColor"/>
+            </svg>
+          </span>
+          <div class="lodge-price">
+            <span class="price-amount">12</span>
+            <span class="price-currency">Peças de Prata</span>
+          </div>
+          <span class="price-period">por noite</span>
+          <ul class="lodge-features">
+            <li>Cama com colchão de palha macio</li>
+            <li>Tranca na porta (funcional)</li>
+            <li>Lareira no quarto</li>
+            <li>Café da manhã completo incluso</li>
+            <li>Banho quente incluso</li>
+          </ul>
+        </div>
+
+        <!-- Suíte do Lorde -->
+        <div class="lodge-card reveal reveal-delay-2">
+          <p class="lodge-tier">Luxo</p>
+          <h3 class="lodge-name">Suíte do Lorde</h3>
+          <span class="lodge-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 30L4 19L11 25L20 8L29 25L36 19L36 30Z" fill="currentColor"/>
+              <rect x="4" y="30" width="32" height="4" rx="1" fill="currentColor"/>
+              <circle cx="4" cy="19" r="2" fill="currentColor"/>
+              <circle cx="20" cy="8" r="2" fill="currentColor"/>
+              <circle cx="36" cy="19" r="2" fill="currentColor"/>
+            </svg>
+          </span>
+          <div class="lodge-price">
+            <span class="price-amount">2</span>
+            <span class="price-currency">Peças de Ouro</span>
+          </div>
+          <span class="price-period">por noite</span>
+          <ul class="lodge-features">
+            <li>O melhor quarto da casa</li>
+            <li>Vista para as montanhas (quando não há fumaça)</li>
+            <li>Cama de verdade, colchão de lã</li>
+            <li>Refeições incluídas — todas</li>
+            <li>Guardião pessoal (Thorgun supervisiona)</li>
+          </ul>
+        </div>
+
+        <!-- Toca do Mago -->
+        <div class="lodge-card reveal reveal-delay-3">
+          <p class="lodge-tier">Arcano</p>
+          <h3 class="lodge-name">A Toca do Mago</h3>
+          <span class="lodge-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <polygon points="20,4 23.5,14 34,14 25.5,20.5 28.5,31 20,25 11.5,31 14.5,20.5 6,14 16.5,14" fill="currentColor"/>
+              <circle cx="20" cy="19" r="4" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+            </svg>
+          </span>
+          <div class="lodge-price">
+            <span class="price-amount">18</span>
+            <span class="price-currency">Peças de Prata</span>
+          </div>
+          <span class="price-period">por noite</span>
+          <ul class="lodge-features">
+            <li>Projetada por Aion Namtar</li>
+            <li>Proteções arcanas ativas</li>
+            <li>Ideal para conjuradores</li>
+            <li>Proibido invocar demônios</li>
+          </ul>
+        </div>
+
+        <!-- Camping -->
+        <div class="lodge-card reveal reveal-delay-4">
+          <p class="lodge-tier">Aventureiro</p>
+          <h3 class="lodge-name">Acampamento Externo</h3>
+          <span class="lodge-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <polygon points="20,5 37,31 3,31" fill="currentColor" opacity="0.85"/>
+              <line x1="20" y1="5" x2="20" y2="31" stroke="var(--color-bg-card)" stroke-width="2"/>
+              <ellipse cx="20" cy="35" rx="7" ry="3" fill="currentColor" opacity="0.5"/>
+              <ellipse cx="20" cy="35" rx="3" ry="1.5" fill="currentColor"/>
+            </svg>
+          </span>
+          <div class="lodge-price">
+            <span class="price-amount">8</span>
+            <span class="price-currency">Peças de Cobre</span>
+          </div>
+          <span class="price-period">por noite</span>
+          <ul class="lodge-features">
+            <li>Terreno ao lado da taverna</li>
+            <li>Fogueira compartilhada</li>
+            <li>Acesso aos banheiros internos</li>
+            <li>Por sua própria conta e risco</li>
+          </ul>
+        </div>
+
+      </div><!-- /lodge-grid -->
+
+    </div><!-- /container -->
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       OS DONOS
+  ══════════════════════════════════════ -->
+  <section id="donos" aria-label="Os donos da taberna">
+    <div class="container">
+
+      <h2 class="section-title reveal">Os Donos</h2>
+      <div class="section-ornament reveal reveal-delay-1" aria-hidden="true">
+        <div class="ornament-diamond"></div>
+      </div>
+
+      <div class="owners-grid">
+
+        <!-- Thorgun -->
+        <article class="owner-card reveal reveal-delay-1" tabindex="0" role="article" aria-label="Thorgun"
+          data-img="img/thorgun.png"
+          data-alt="Retrato de Thorgun, o ferreiro guardião"
+          data-name="Thorgun"
+          data-title="Matheus"
+          data-desc="Silencioso como as montanhas e resistente como o aço que forja. Thorgun não faz perguntas, e espera o mesmo dos clientes. Cuida do açougue da taverna e de seus hóspedes com igual devoção.">
+          <div class="owner-img-wrap">
+            <img src="img/thorgun.png" alt="Retrato de Thorgun, o ferreiro guardião" loading="lazy" />
+            <div class="owner-img-overlay" aria-hidden="true"></div>
+          </div>
+          <div class="owner-info">
+            <h3 class="owner-name">Thorgun</h3>
+            <p class="owner-title">Matheus</p>
+            <p class="owner-desc">
+              Silencioso como as montanhas e resistente como o aço que forja.
+              Thorgun não faz perguntas, e espera o mesmo dos clientes.
+              Cuida do açougue da taverna e de seus hóspedes com igual devoção.
+            </p>
+          </div>
+        </article>
+
+        <!-- Aion Namtar -->
+        <article class="owner-card reveal reveal-delay-2" tabindex="0" role="article" aria-label="Aion Namtar"
+          data-img="img/aionnamtar.png"
+          data-alt="Retrato de Aion Namtar, o conjurador sombrio"
+          data-name="Aion Namtar"
+          data-title="Pablo"
+          data-desc="Ninguém sabe ao certo o que Aion fez antes de chegar à Estrada para os Céus. Ele gerencia as finanças, os contratos e os segredos. Não o contradiga na conta.">
+          <div class="owner-img-wrap">
+            <img src="img/aionnamtar.png" alt="Retrato de Aion Namtar, o conjurador sombrio" loading="lazy" />
+            <div class="owner-img-overlay" aria-hidden="true"></div>
+          </div>
+          <div class="owner-info">
+            <h3 class="owner-name">Aion Namtar</h3>
+            <p class="owner-title">Pablo</p>
+            <p class="owner-desc">
+              Ninguém sabe ao certo o que Aion fez antes de chegar à Estrada para os Céus.
+              Ele gerencia as finanças, os contratos e os segredos.
+              Não o contradiga na conta.
+            </p>
+          </div>
+        </article>
+
+        <!-- Tripa de Boi -->
+        <article class="owner-card reveal reveal-delay-3" tabindex="0" role="article" aria-label="Tripa de Boi"
+          data-img="img/tripadeboi.png"
+          data-alt="Retrato de Tripa de Boi, o cozinheiro lendário"
+          data-name="Tripa de Boi"
+          data-title="Licoln"
+          data-desc="Com mãos que viram guerras e fogões, Tripa de Boi comanda a cozinha com a mesma autoridade que um general comanda um exército. Seu assado da casa é sussurrado nos bardos como lenda viva.">
+          <div class="owner-img-wrap">
+            <img src="img/tripadeboi.png" alt="Retrato de Tripa de Boi, o cozinheiro lendário" loading="lazy" />
+            <div class="owner-img-overlay" aria-hidden="true"></div>
+          </div>
+          <div class="owner-info">
+            <h3 class="owner-name">Tripa de Boi</h3>
+            <p class="owner-title">Licoln</p>
+            <p class="owner-desc">
+              Com mãos que viram guerras e fogões, Tripa de Boi comanda a cozinha
+              com a mesma autoridade que um general comanda um exército.
+              Seu assado da casa é sussurrado nos bardos como lenda viva.
+            </p>
+          </div>
+        </article>
+
+        <!-- Zarek Pyros -->
+        <article class="owner-card reveal reveal-delay-4" tabindex="0" role="article" aria-label="Zarek Pyros"
+          data-img="img/zarekpyros.png"
+          data-alt="Retrato de Zarek Pyros, o dono draconiano"
+          data-name="Zarek Pyros"
+          data-title="Bruno"
+          data-desc="Metade homem, metade mistério. Zarek toma conta do bar e das histórias. Diz-se que suas escamas brilham quando mente, o que explica por que sua cerveja nunca está 'acabada'.">
+          <div class="owner-img-wrap">
+            <img src="img/zarekpyros.png" alt="Retrato de Zarek Pyros, o dono draconiano" loading="lazy" />
+            <div class="owner-img-overlay" aria-hidden="true"></div>
+          </div>
+          <div class="owner-info">
+            <h3 class="owner-name">Zarek Pyros</h3>
+            <p class="owner-title">Bruno</p>
+            <p class="owner-desc">
+              Metade homem, metade mistério. Zarek toma conta do bar e das
+              histórias. Diz-se que suas escamas brilham quando mente, o que
+              explica por que sua cerveja nunca está "acabada".
+            </p>
+          </div>
+        </article>
+
+      </div><!-- /owners-grid -->
+
+    </div><!-- /container -->
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <span class="footer-logo">Estrada para os Céus</span>
+    <p class="footer-tagline">
+      &ldquo;Alguns dizem que é o caminho do céu. Outros juram que é o desvio.&rdquo;
+    </p>
+    <div class="footer-divider" aria-hidden="true"></div>
+    <p class="footer-copy">
+      &copy; <span id="year"></span> Estrada para os Céus &mdash; Taberna &amp; Pousada &mdash; Todos os direitos reservados nos reinos conhecidos.
+    </p>
+  </footer>
+
+  <!-- ══════════════════════════════════════
+       OWNER MODAL
+  ══════════════════════════════════════ -->
+  <div id="ownerModal" class="owner-modal" role="dialog" aria-modal="true" aria-label="Detalhes do dono" aria-hidden="true">
+    <div class="owner-modal-backdrop"></div>
+    <div class="owner-modal-content">
+      <button class="owner-modal-close" id="ownerModalClose" aria-label="Fechar">✕</button>
+      <div class="owner-modal-img-wrap">
+        <img id="ownerModalImg" src="" alt="" />
+        <div class="owner-modal-img-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="owner-modal-info">
+        <div class="owner-modal-ornament" aria-hidden="true">✦</div>
+        <h3 id="ownerModalName" class="owner-modal-name"></h3>
+        <p id="ownerModalTitle" class="owner-modal-player"></p>
+        <div class="owner-modal-divider" aria-hidden="true"></div>
+        <p id="ownerModalDesc" class="owner-modal-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
