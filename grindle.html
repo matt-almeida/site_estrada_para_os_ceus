@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grindle "Pisa-Pele" Murren — Estrada para os Céus</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#0e0a06" />
+  <style>
+    /* ── CHARACTER PAGE — Grindle ───────────────────────────── */
+
+    .char-backdrop {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--color-bg);
+    }
+
+    .char-backdrop-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: sepia(20%) brightness(0.7);
+    }
+
+    /* Layered gradients sobre a imagem */
+    .char-backdrop::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom,
+          rgba(14,10,6,0.25) 0%,
+          rgba(14,10,6,0.1)  40%,
+          rgba(14,10,6,0.7)  75%,
+          rgba(14,10,6,1)    100%
+        ),
+        radial-gradient(ellipse at 30% 60%, rgba(192,68,10,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 40%, rgba(107,26,42,0.12) 0%, transparent 55%);
+    }
+
+    /* Texto flutuando sobre o backdrop */
+    .char-backdrop-quote {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      text-align: center;
+      width: 90%;
+      max-width: 680px;
+    }
+
+    .char-backdrop-quote blockquote {
+      font-family: var(--font-flavor);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+      color: var(--color-parchment-lt);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.9), 0 0 40px rgba(212,160,23,0.2);
+      line-height: 1.5;
+    }
+
+    .char-backdrop-quote blockquote::before { content: '\201C'; }
+    .char-backdrop-quote blockquote::after  { content: '\201D'; }
+
+    /* ── Back link ─────────────────────────────────────────── */
+    .char-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-parchment);
+      text-decoration: none;
+      padding: 1.25rem 2rem 0;
+      transition: color var(--transition);
+      position: relative;
+      z-index: 10;
+    }
+    .char-back:hover { color: var(--color-gold-bright); }
+    .char-back::before { content: '←'; font-size: 1rem; }
+
+    /* ── Main character layout ─────────────────────────────── */
+    .char-body {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+
+    /* ── Portrait aside ────────────────────────────────────── */
+    .char-portrait-col {
+      position: sticky;
+      top: 5rem;
+    }
+
+    .char-portrait-frame {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-deep), 0 0 40px rgba(212,160,23,0.1);
+    }
+
+    .char-portrait-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        linear-gradient(to bottom, transparent 60%, rgba(14,10,6,0.85) 100%),
+        linear-gradient(to right,  rgba(14,10,6,0.3) 0%, transparent 30%, transparent 70%, rgba(14,10,6,0.3) 100%);
+      pointer-events: none;
+    }
+
+    /* Corner ornaments */
+    .char-portrait-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      background:
+        linear-gradient(135deg, var(--color-gold) 0px, var(--color-gold) 1px, transparent 1px, transparent 16px),
+        linear-gradient(225deg, var(--color-gold) 0px, var(--color-gold) 1px, transparent 1px, transparent 16px),
+        linear-gradient(315deg, var(--color-gold) 0px, var(--color-gold) 1px, transparent 1px, transparent 16px),
+        linear-gradient(45deg,  var(--color-gold) 0px, var(--color-gold) 1px, transparent 1px, transparent 16px);
+      background-position: top left, top right, bottom right, bottom left;
+      background-size: 16px 16px;
+      background-repeat: no-repeat;
+    }
+
+    .char-portrait-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: sepia(10%) brightness(0.88);
+      transition: transform 0.6s ease, filter 0.4s ease;
+    }
+    .char-portrait-frame:hover img {
+      transform: scale(1.03);
+      filter: sepia(5%) brightness(0.95);
+    }
+
+    /* Stats below portrait */
+    .char-stats {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .char-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(58,42,21,0.4);
+    }
+    .char-stat:last-child { border-bottom: none; }
+
+    .char-stat-label {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .char-stat-value {
+      font-family: var(--font-flavor);
+      font-style: italic;
+      font-size: 0.92rem;
+      color: var(--color-parchment);
+      text-align: right;
+    }
+
+    .char-stat-value.highlight {
+      color: var(--color-gold);
+      font-style: normal;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Content col ───────────────────────────────────────── */
+    .char-content-col {}
+
+    .char-eyebrow {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--color-ember);
+      margin-bottom: 0.5rem;
+    }
+
+    .char-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--color-gold-bright);
+      line-height: 1.1;
+      text-shadow: 0 0 40px rgba(212,160,23,0.35);
+      margin-bottom: 0.3rem;
+    }
+
+    .char-epithet {
+      font-family: var(--font-flavor);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .char-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+    .char-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--color-gold), transparent);
+    }
+    .char-divider-gem {
+      width: 7px; height: 7px;
+      background: var(--color-gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* Lore text */
+    .char-lore {
+      font-family: var(--font-flavor);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--color-parchment);
+      line-height: 1.9;
+      margin-bottom: 1.2rem;
+    }
+    .char-lore p + p { margin-top: 1rem; }
+
+    /* Traits section */
+    .char-traits-title {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin: 2.5rem 0 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .char-traits-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--color-border), transparent);
+    }
+
+    .char-traits-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .char-traits-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--color-text);
+      line-height: 1.6;
+      padding: 0.65rem 1rem;
+      background: rgba(26,17,8,0.5);
+      border: 1px solid rgba(58,42,21,0.3);
+      border-left: 2px solid var(--color-ember);
+    }
+
+    .char-traits-list li::before {
+      content: '✦';
+      color: var(--color-ember);
+      font-size: 0.6rem;
+      margin-top: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 800px) {
+      .char-body {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .char-portrait-col {
+        position: static;
+        max-width: 280px;
+        margin: 0 auto;
+      }
+      .char-backdrop { aspect-ratio: 4 / 3; }
+    }
+
+    @media (max-width: 480px) {
+      .char-backdrop { aspect-ratio: 1 / 1; }
+      .char-backdrop-quote blockquote { font-size: 0.95rem; }
+      .char-backdrop-quote { bottom: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar igual ao index -->
+  <nav id="navbar" role="navigation" aria-label="Navegação principal">
+    <ul class="nav-links">
+      <li><a href="index.html#hero">Início</a></li>
+      <li><a href="index.html#taverna">A Taverna</a></li>
+      <li><a href="index.html#cardapio">Cardápio</a></li>
+      <li><a href="index.html#hospedagem">Hospedagem</a></li>
+      <li><a href="index.html#interacoes" class="active">Interações</a></li>
+      <li><a href="index.html#donos">Os Donos</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-mobile-overlay" id="navMobileOverlay" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+    <a href="index.html#hero">Início</a>
+    <a href="index.html#taverna">A Taverna</a>
+    <a href="index.html#cardapio">Cardápio</a>
+    <a href="index.html#hospedagem">Hospedagem</a>
+    <a href="index.html#interacoes">Interações</a>
+    <a href="index.html#donos">Os Donos</a>
+  </div>
+
+  <!-- ── BACKDROP 16:9 ── -->
+  <div class="char-backdrop">
+    <!--
+      Coloque aqui uma imagem landscape/wide do Grindle ou de uma cena com ele.
+      Sugestão: img/grindle-wide.jpg (foto ampla, panorâmica)
+      Se não tiver imagem wide, use a mesma 3:4 — o object-fit cobre bem.
+    -->
+    <img
+      class="char-backdrop-img"
+      src="img/grindle2.png"
+      alt="Grindle Pisa-Pele Murren montado no seu mastim"
+    />
+    <div class="char-backdrop-quote">
+      <blockquote>Porta aberta não significa passagem liberada!</blockquote>
+    </div>
+  </div>
+
+  <!-- Link de voltar (fora do container, no topo) -->
+  <a href="index.html#interacoes" class="char-back">Voltar às Interações</a>
+
+  <!-- ── CORPO DA PÁGINA ── -->
+  <main class="char-body">
+
+    <!-- Coluna da esquerda: retrato + stats -->
+    <aside class="char-portrait-col">
+      <div class="char-portrait-frame">
+        <!--
+          Imagem 3:4 do personagem.
+          Arquivo sugerido: img/grindle.jpg
+        -->
+        <img
+          src="img/grindle.png"
+          alt="Retrato de Grindle Pisa-Pele Murren"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="char-stats">
+        <div class="char-stat">
+          <span class="char-stat-label">Tendência</span>
+          <span class="char-stat-value highlight">Caótico Bom</span>
+        </div>
+        <div class="char-stat">
+          <span class="char-stat-label">Ocupação</span>
+          <span class="char-stat-value">Sentinela</span>
+        </div>
+        <div class="char-stat">
+          <span class="char-stat-label">Raça</span>
+          <span class="char-stat-value">Gnomo da Floresta</span>
+        </div>
+        <div class="char-stat">
+          <span class="char-stat-label">Local</span>
+          <span class="char-stat-value">Estrada para os Céus</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Coluna da direita: conteúdo narrativo -->
+    <article class="char-content-col">
+
+      <p class="char-eyebrow">Sentinela da Taberna</p>
+      <h1 class="char-name">Grindle "Pisa-Pele" Murren</h1>
+      <p class="char-epithet">— O homem que nunca desce do cachorro.</p>
+
+      <div class="char-divider">
+        <div class="char-divider-line"></div>
+        <div class="char-divider-gem"></div>
+      </div>
+
+      <div class="char-lore">
+        <p>Grindle acredita que "o chão é território dos tolos". Ele diz que quem anda por baixo não enxerga perigo chegando.</p>
+        <p>Na verdade, isso começou por puro oportunismo: anos atrás ele tentou roubar o mastim de um mercenário bêbado… e o bicho simplesmente não deixou ele descer mais. Com o tempo, virou parceria — Grindle guia, o mastim decide.</p>
+        <p>Ele jura que está no controle. Ninguém mais acredita nisso.</p>
+      </div>
+
+      <p class="char-traits-title">Traços de Personalidade</p>
+
+      <ul class="char-traits-list">
+        <li>Sempre fala como se soubesse algo que você não sabe</li>
+        <li>Ri em momentos completamente inadequados</li>
+        <li>Nunca desce do mastim — nem pra dormir direito</li>
+        <li>Coleciona objetos inúteis que ele chama de "importantes"</li>
+        <li>Desconfia de pessoas educadas demais</li>
+        <li>Tem uma lógica própria que às vezes funciona melhor que a normal</li>
+      </ul>
+
+    </article>
+  </main>
+
+  <!-- Footer idêntico ao index -->
+  <footer role="contentinfo">
+    <span class="footer-logo">Estrada para os Céus</span>
+    <p class="footer-tagline">&ldquo;Alguns dizem que é o caminho do céu. Outros juram que é o desvio.&rdquo;</p>
+    <div class="footer-divider" aria-hidden="true"></div>
+    <p class="footer-copy">
+      &copy; <span id="year"></span> Estrada para os Céus &mdash; Taberna &amp; Pousada &mdash; © 2026 Matheus Almeida. Todos os direitos reservados.
+    </p>
+  </footer>
+
+  <script>
+    /* Navbar idêntico ao script.js principal, compactado */
+    'use strict';
+    const navbar = document.getElementById('navbar');
+    function updateNav() {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    const toggle  = document.getElementById('navToggle');
+    const overlay = document.getElementById('navMobileOverlay');
+    toggle.addEventListener('click', () => {
+      const isOpen = overlay.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    overlay.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        overlay.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

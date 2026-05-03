@@ -713,6 +713,124 @@ section {
     var(--color-bg-section);
 }
 
+/* ── INTERAÇÕES ──────────────────────────────────────────── */
+.interactions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.interaction-card {
+  display: block;
+  text-decoration: none;
+  position: relative;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.interaction-card:hover {
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-glow), var(--shadow-deep);
+  transform: translateY(-4px);
+}
+
+.interaction-card-img-wrap {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.interaction-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: sepia(15%) brightness(0.85);
+  transition: transform 0.55s ease, filter 0.4s ease;
+}
+
+.interaction-card:hover .interaction-card-img-wrap img {
+  transform: scale(1.05);
+  filter: sepia(8%) brightness(0.95);
+}
+
+.interaction-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(14,10,6,0.92) 0%, rgba(14,10,6,0.3) 45%, transparent 100%);
+  transition: opacity var(--transition);
+}
+
+.interaction-card:hover .interaction-card-overlay {
+  opacity: 0.8;
+}
+
+.interaction-card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.25rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.interaction-card-role {
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+
+.interaction-card-name {
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+  color: var(--color-gold-bright);
+  line-height: 1.25;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.8);
+}
+
+.interaction-card-name em {
+  font-family: var(--font-flavor);
+  font-style: italic;
+  font-size: 0.88em;
+  color: var(--color-parchment);
+}
+
+.interaction-card-hint {
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity var(--transition), transform var(--transition);
+  margin-top: 0.25rem;
+}
+
+.interaction-card:hover .interaction-card-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsivo */
+@media (max-width: 1000px) {
+  .interactions-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 700px) {
+  .interactions-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+}
+@media (max-width: 380px) {
+  .interactions-grid { grid-template-columns: 1fr; }
+}
+-->
+
 .owners-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
