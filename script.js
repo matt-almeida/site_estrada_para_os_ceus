@@ -79,25 +79,27 @@ if (heroContent) {
 }
 
 // ── Owner card modal ─────────────────────────────────────────
-const modal     = document.getElementById('ownerModal');
-const modalImg  = document.getElementById('modalImg');
-const modalName = document.getElementById('modalName');
-const modalTitle= document.getElementById('modalTitle');
-const modalDesc = document.getElementById('modalDesc');
-const modalClose= document.getElementById('modalClose');
+const modal      = document.getElementById('ownerModal');
+const modalImg   = document.getElementById('modalImg');
+const modalName  = document.getElementById('modalName');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc  = document.getElementById('modalDesc');
+const modalClose = document.getElementById('modalClose');
 
 function openModal(card) {
-  modalImg.src          = card.dataset.img;
-  modalImg.alt          = card.dataset.name;
-  modalName.textContent = card.dataset.name;
-  modalTitle.textContent= card.dataset.title;
-  modalDesc.textContent = card.dataset.desc;
+  if (!modal) return;
+  modalImg.src           = card.dataset.img;
+  modalImg.alt           = card.dataset.name;
+  modalName.textContent  = card.dataset.name;
+  modalTitle.textContent = card.dataset.title;
+  modalDesc.textContent  = card.dataset.desc;
   modal.hidden = false;
   document.body.style.overflow = 'hidden';
   modalClose.focus();
 }
 
 function closeModal() {
+  if (!modal) return;
   modal.hidden = true;
   document.body.style.overflow = '';
 }
@@ -109,16 +111,16 @@ document.querySelectorAll('.owner-card').forEach(card => {
   });
 });
 
-modalClose.addEventListener('click', closeModal);
+if (modalClose) modalClose.addEventListener('click', closeModal);
 
-// Close on backdrop click
-modal.addEventListener('click', e => {
-  if (e.target === modal) closeModal();
-});
+if (modal) {
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeModal();
+  });
+}
 
-// Close on Escape
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && !modal.hidden) closeModal();
+  if (e.key === 'Escape' && modal && !modal.hidden) closeModal();
 });
 
 // ── Dynamic year in footer ───────────────────────────────────
@@ -139,50 +141,91 @@ document.querySelectorAll('.lodge-card:not(.featured)').forEach(card => {
 console.log('%c⚔  Estrada para os Céus  ⚔', 'color:#d4a017;font-size:1.3rem;font-family:serif;');
 console.log('%cBem-vindo, aventureiro. Sua jornada começa aqui.', 'color:#c8a96e;font-style:italic;font-family:serif;');
 
-// ── Splash screen + transição cinematográfica ────────────────
-const splash      = document.getElementById('splash');
-const splashVeil  = document.getElementById('splashVeil');
-const splashBtn   = document.getElementById('splashEnter');
+// ── Áudio persistente entre páginas ─────────────────────────
 const tavernAudio = document.getElementById('tavernAudio');
 
-tavernAudio.volume = 0;
+function saveAudioState() {
+  if (!tavernAudio) return;
+  sessionStorage.setItem('audioPlaying', tavernAudio.paused ? '0' : '1');
+  sessionStorage.setItem('audioTime',    tavernAudio.currentTime);
+  sessionStorage.setItem('audioVolume',  tavernAudio.volume);
+}
 
-splashBtn.addEventListener('click', () => {
-  // 1. Trava o botão pra não clicar duas vezes
-  splashBtn.disabled = true;
-
-  // 2. Véu escurece — tela vai a preto
-  splashVeil.classList.add('fade-in');
-
-  setTimeout(() => {
-    // 3. No escuro total: remove a splash, inicia o áudio
-    splash.classList.add('leaving');
+function resumeAudio() {
+  if (!tavernAudio) return;
+  const wasPlaying = sessionStorage.getItem('audioPlaying') === '1';
+  const savedTime  = parseFloat(sessionStorage.getItem('audioTime')   || '0');
+  const savedVol   = parseFloat(sessionStorage.getItem('audioVolume') || '0.35');
+  if (wasPlaying) {
+    tavernAudio.currentTime = savedTime;
+    tavernAudio.volume      = savedVol;
     tavernAudio.play().catch(() => {});
+  }
+}
 
-    // Fade in do volume suavemente
-    fadeInAudio(tavernAudio, 0.35, 3000);
+// Salva estado antes de sair da página
+window.addEventListener('beforeunload', saveAudioState);
 
-    setTimeout(() => {
-      // 4. Véu some lentamente — site se revela
-      splashVeil.classList.remove('fade-in');
-      splashVeil.classList.add('fade-out');
+// Salva a cada segundo enquanto toca
+if (tavernAudio) {
+  setInterval(saveAudioState, 1000);
+}
 
-      setTimeout(() => {
-        splash.remove();
-        splashVeil.remove();
-      }, 2000);
+// ── Splash — só na primeira visita da sessão ─────────────────
+const splash     = document.getElementById('splash');
+const splashVeil = document.getElementById('splashVeil');
+const splashBtn  = document.getElementById('splashEnter');
 
-    }, 400);
+if (splash) {
+  // Já visitou antes nesta sessão? Remove a splash imediatamente
+  if (sessionStorage.getItem('splashShown')) {
+    splash.remove();
+    if (splashVeil) splashVeil.remove();
+    // Retoma o áudio de onde parou
+    resumeAudio();
+  } else {
+    // Primeira visita — mostra a splash normalmente
+    if (tavernAudio) tavernAudio.volume = 0;
 
-  }, 650); // tempo que leva para escurecer
-});
+    if (splashBtn) {
+      splashBtn.addEventListener('click', () => {
+        splashBtn.disabled = true;
+        sessionStorage.setItem('splashShown', '1');
+
+        splashVeil.classList.add('fade-in');
+
+        setTimeout(() => {
+          splash.classList.add('leaving');
+          if (tavernAudio) {
+            tavernAudio.play().catch(() => {});
+            sessionStorage.setItem('audioPlaying', '1');
+            fadeInAudio(tavernAudio, 0.35, 3000);
+          }
+
+          setTimeout(() => {
+            splashVeil.classList.remove('fade-in');
+            splashVeil.classList.add('fade-out');
+
+            setTimeout(() => {
+              splash.remove();
+              splashVeil.remove();
+            }, 2000);
+          }, 400);
+        }, 650);
+      });
+    }
+  }
+} else {
+  // Página sem splash (ex: grindle.html) — retoma direto se estava tocando
+  resumeAudio();
+}
 
 // Volume sobe gradualmente
 function fadeInAudio(audio, targetVolume, duration) {
-  const steps    = 40;
-  const interval = duration / steps;
+  const steps     = 40;
+  const interval  = duration / steps;
   const increment = targetVolume / steps;
-  let current = 0;
+  let current     = 0;
 
   const timer = setInterval(() => {
     current += increment;
