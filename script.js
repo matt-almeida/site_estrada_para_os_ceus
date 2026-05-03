@@ -138,3 +138,55 @@ document.querySelectorAll('.lodge-card:not(.featured)').forEach(card => {
 // ── Console Easter Egg ───────────────────────────────────────
 console.log('%c⚔  Estrada para os Céus  ⚔', 'color:#d4a017;font-size:1.3rem;font-family:serif;');
 console.log('%cBem-vindo, aventureiro. Sua jornada começa aqui.', 'color:#c8a96e;font-style:italic;font-family:serif;');
+
+// ── Splash screen + transição cinematográfica ────────────────
+const splash      = document.getElementById('splash');
+const splashVeil  = document.getElementById('splashVeil');
+const splashBtn   = document.getElementById('splashEnter');
+const tavernAudio = document.getElementById('tavernAudio');
+
+tavernAudio.volume = 0;
+
+splashBtn.addEventListener('click', () => {
+  // 1. Trava o botão pra não clicar duas vezes
+  splashBtn.disabled = true;
+
+  // 2. Véu escurece — tela vai a preto
+  splashVeil.classList.add('fade-in');
+
+  setTimeout(() => {
+    // 3. No escuro total: remove a splash, inicia o áudio
+    splash.classList.add('leaving');
+    tavernAudio.play().catch(() => {});
+
+    // Fade in do volume suavemente
+    fadeInAudio(tavernAudio, 0.35, 3000);
+
+    setTimeout(() => {
+      // 4. Véu some lentamente — site se revela
+      splashVeil.classList.remove('fade-in');
+      splashVeil.classList.add('fade-out');
+
+      setTimeout(() => {
+        splash.remove();
+        splashVeil.remove();
+      }, 2000);
+
+    }, 400);
+
+  }, 650); // tempo que leva para escurecer
+});
+
+// Volume sobe gradualmente
+function fadeInAudio(audio, targetVolume, duration) {
+  const steps    = 40;
+  const interval = duration / steps;
+  const increment = targetVolume / steps;
+  let current = 0;
+
+  const timer = setInterval(() => {
+    current += increment;
+    audio.volume = Math.min(parseFloat(current.toFixed(3)), targetVolume);
+    if (audio.volume >= targetVolume) clearInterval(timer);
+  }, interval);
+}
