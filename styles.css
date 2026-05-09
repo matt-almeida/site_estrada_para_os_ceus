@@ -1241,3 +1241,13 @@ footer {
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(212,160,23,0.55);
 }
+
+.char-divider-line {
+  background: linear-gradient(to right, var(--color-gold), transparent);
+  animation: shimmer 3s ease-in-out infinite alternate;
+}
+
+@keyframes shimmer {
+  from { opacity: 0.5; }
+  to   { opacity: 1; }
+}

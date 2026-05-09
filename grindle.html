@@ -99,8 +99,6 @@
 
     /* ── Portrait aside ────────────────────────────────────── */
     .char-portrait-col {
-      position: sticky;
-      top: 5rem;
     }
 
     .char-portrait-frame {
@@ -239,14 +237,15 @@
       transform: rotate(45deg);
       flex-shrink: 0;
     }
+    
 
     /* Lore text */
     .char-lore {
-      font-family: var(--font-flavor);
-      font-style: italic;
+      font-family: var(--font-body);
+      font-style: normal;
       font-size: 1.05rem;
-      color: var(--color-parchment);
-      line-height: 1.9;
+      color: var(--color-text);
+      line-height: 1.95;
       margin-bottom: 1.2rem;
     }
     .char-lore p + p { margin-top: 1rem; }
@@ -319,22 +318,23 @@
       text-decoration: none;
     }
 
-    .char-bond-avatar-ring {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid var(--color-gold);
-      box-shadow: 0 0 16px rgba(212,160,23,0.25), var(--shadow-deep);
-      flex-shrink: 0;
-      position: relative;
-      transition: border-color var(--transition), box-shadow var(--transition);
-    }
+  .char-bond-avatar-ring {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--color-gold);
+    box-shadow: 0 0 16px rgba(212,160,23,0.25), var(--shadow-deep);
+    flex-shrink: 0;
+    position: relative;
+    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);  /* ← adiciona transform */
+}
 
-    .char-bond-avatar:hover .char-bond-avatar-ring {
-      border-color: var(--color-gold-bright);
-      box-shadow: 0 0 28px rgba(212,160,23,0.5), var(--shadow-deep);
-    }
+  .char-bond-avatar:hover .char-bond-avatar-ring {
+    border-color: var(--color-gold-bright);
+    box-shadow: 0 0 28px rgba(212,160,23,0.5), var(--shadow-deep);
+    transform: translateY(-3px);  /* ← linha nova */
+}
 
     .char-bond-avatar-ring img {
       width: 100%;
@@ -359,6 +359,8 @@
       text-align: center;
       max-width: 90px;
       line-height: 1.4;
+      transition: color var(--transition);
+      color: var(--color-gold-bright);
     }
 
     .char-bond-text {
@@ -495,7 +497,7 @@
 
       <p class="char-eyebrow">Sentinela da Taberna</p>
       <h1 class="char-name">Grindle "Pisa-Pele" Murren</h1>
-      <p class="char-epithet">— O homem que nunca desce do cachorro.</p>
+      <p class="char-epithet">— O gnomo que nunca desce do cachorro.</p>
 
       <div class="char-divider">
         <div class="char-divider-line"></div>
@@ -503,21 +505,11 @@
       </div>
 
       <div class="char-lore">
-        <p>Grindle acredita que "o chão é território dos tolos". Ele diz que quem anda por baixo não enxerga perigo chegando.</p>
-        <p>Na verdade, isso começou por puro oportunismo: anos atrás ele tentou roubar o mastim de um mercenário bêbado… e o bicho simplesmente não deixou ele descer mais. Com o tempo, virou parceria — Grindle guia, o mastim decide.</p>
-        <p>Ele jura que está no controle. Ninguém mais acredita nisso.</p>
+        <p>Grindle acredita firmemente que “o chão é território dos tolos”. Na visão dele, quem insiste em andar por baixo simplesmente não percebe o perigo chegando — e quando percebe, já é tarde demais.</p>
+        <p>Essa filosofia, porém, não nasceu de sabedoria, e sim de uma sequência bastante específica de má sorte e oportunismo. Anos atrás, tentando roubar o mastim de um mercenário completamente bêbado, Grindle descobriu tarde demais que o animal não tinha a menor intenção de deixá-lo “descer” da situação. Nem do chão. Nem da vida.</p>
+        <p>O que deveria ter sido um desastre virou hábito. Depois virou acordo. Hoje, virou parceria. Ele continua falando como se soubesse de coisas que ninguém mais sabe, ri em momentos completamente errados e nunca desce do mastim, nem quando dormir direito seria uma opção sensata.</p>
+        <p>Carrega consigo pequenos objetos inúteis que chama de “importantes” e mantém uma desconfiança quase filosófica de pessoas educadas demais.</p>
       </div>
-
-      <p class="char-traits-title">Traços de Personalidade</p>
-
-      <ul class="char-traits-list">
-        <li>Sempre fala como se soubesse algo que você não sabe</li>
-        <li>Ri em momentos completamente inadequados</li>
-        <li>Nunca desce do mastim — nem pra dormir direito</li>
-        <li>Coleciona objetos inúteis que ele chama de "importantes"</li>
-        <li>Desconfia de pessoas educadas demais</li>
-        <li>Tem uma lógica própria que às vezes funciona melhor que a normal</li>
-      </ul>
 
       <!-- ── VÍNCULO ── -->
       <div class="char-bond-section">
@@ -545,7 +537,13 @@
         </div>
 
         <p class="char-bond-text">
-          Texto descrevendo o vínculo entre Grindle e o dono da taverna. Como se conheceram, o que os une, e como essa relação se reflete no dia a dia da Estrada para os Céus.
+          Grindle e Thorgun se conheceram durante uma escolta que virou emboscada. Thorgun lutava na linha de frente; Grindle observava de cima, no mastim.
+
+Quando a situação desandou, Grindle caiu no meio do combate e, antes de ser descartado como irrelevante, apontou uma abertura que mudou o rumo da luta. Thorgun seguiu a indicação e passou a levá-lo a sério.
+
+Desde então, funcionam de forma simples: Thorgun executa, Grindle antecipa.
+
+O vínculo se fechou quando Thorgun abriu uma taverna e começou a ter problemas recorrentes de segurança. Ele colocou Grindle como sentinela porque percebeu que ninguém detecta perigo tão cedo quanto ele — e porque é mais barato manter alguém estranho no telhado do que reconstruir a porta toda semana.
         </p>
 
       </div>

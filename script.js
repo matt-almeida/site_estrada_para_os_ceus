@@ -109,16 +109,16 @@ document.querySelectorAll('.owner-card').forEach(card => {
   });
 });
 
-modalClose.addEventListener('click', closeModal);
+if (modalClose) modalClose.addEventListener('click', closeModal)
 
 // Close on backdrop click
-modal.addEventListener('click', e => {
+if (modal) modal.addEventListener('click', e => {
   if (e.target === modal) closeModal();
 });
 
 // Close on Escape
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && !modal.hidden) closeModal();
+  if (e.key === 'Escape' && modal && !modal.hidden) closeModal();
 });
 
 // ── Dynamic year in footer ───────────────────────────────────
@@ -145,44 +145,50 @@ const splashVeil  = document.getElementById('splashVeil');
 const splashBtn   = document.getElementById('splashEnter');
 const tavernAudio = document.getElementById('tavernAudio');
 
-tavernAudio.volume = 0;
+if (splash) {
+  if (sessionStorage.getItem('splashShown')) {
+    // Já visitou nesta sessão — remove a splash direto
+    splash.remove();
+    if (splashVeil) splashVeil.remove();
+  } else {
+    // Primeira visita — mostra normalmente
+    if (tavernAudio) tavernAudio.volume = 0;
 
-splashBtn.addEventListener('click', () => {
-  // 1. Trava o botão pra não clicar duas vezes
-  splashBtn.disabled = true;
+    if (splashBtn) {
+      splashBtn.addEventListener('click', () => {
+        sessionStorage.setItem('splashShown', '1');
+        splashBtn.disabled = true;
 
-  // 2. Véu escurece — tela vai a preto
-  splashVeil.classList.add('fade-in');
+        splashVeil.classList.add('fade-in');
 
-  setTimeout(() => {
-    // 3. No escuro total: remove a splash, inicia o áudio
-    splash.classList.add('leaving');
-    tavernAudio.play().catch(() => {});
+        setTimeout(() => {
+          splash.classList.add('leaving');
+          if (tavernAudio) {
+            tavernAudio.play().catch(() => {});
+            fadeInAudio(tavernAudio, 0.35, 3000);
+          }
 
-    // Fade in do volume suavemente
-    fadeInAudio(tavernAudio, 0.35, 3000);
+          setTimeout(() => {
+            splashVeil.classList.remove('fade-in');
+            splashVeil.classList.add('fade-out');
 
-    setTimeout(() => {
-      // 4. Véu some lentamente — site se revela
-      splashVeil.classList.remove('fade-in');
-      splashVeil.classList.add('fade-out');
-
-      setTimeout(() => {
-        splash.remove();
-        splashVeil.remove();
-      }, 2000);
-
-    }, 400);
-
-  }, 650); // tempo que leva para escurecer
-});
+            setTimeout(() => {
+              splash.remove();
+              splashVeil.remove();
+            }, 2000);
+          }, 400);
+        }, 650);
+      });
+    }
+  }
+}
 
 // Volume sobe gradualmente
 function fadeInAudio(audio, targetVolume, duration) {
-  const steps    = 40;
-  const interval = duration / steps;
+  const steps     = 40;
+  const interval  = duration / steps;
   const increment = targetVolume / steps;
-  let current = 0;
+  let current     = 0;
 
   const timer = setInterval(() => {
     current += increment;
